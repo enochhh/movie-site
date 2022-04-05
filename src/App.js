@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import MovieCard from './components/MovieCard';
-
-// import './App.css';
+import './App.css';
 import SearchIcon from './search.svg';
 
 
@@ -15,23 +14,24 @@ const App = () => {
     const searchMovies = async(title) => {
         const response = await fetch(`${API_URL}&s=${title}`);
         const data = await response.json();
-        
         setMovies(data.Search);
     }
 
     useEffect(() => {
-        searchMovies('');
+        searchMovies('Batman');
     },[])
 
     return (
         <div className='app'>
-            <h1>Netflix</h1>
+            <h1>Notflix</h1>
 
             <div className='search'>
                 <input
                     placeholder='Search for movies'
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={(e) => {
+                        setSearchTerm(e.target.value);
+                    }}
                 ></input>
                 <img
                     src={SearchIcon}
